@@ -1,0 +1,96 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ML artifacts
+checkpoints/
+models/*.pt
+models/*.pth
+mlruns/
+results/*.json
+results/*.csv
+results/*.png
+results/*.pdf
+*.ckpt
+*.h5
+*.hdf5
+
+# Data
+data/
+datasets/
+*.wav
+*.mp3
+*.flac
+
+# Logs
+*.log
+logs/
+tensorboard/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+temp/
+tmp/
+
+
+# Auto-added by publisher
+# Training artifacts (auto-added by publisher)
+*.pt
+*.pth
+*.pkl
+*.onnx
+*.bin
+*.safetensors
+wandb/
+mlflow.db
+data/*.arrow
+data/*.parquet
+data/*.h5
+data/*.hdf5
+data/raw/
+data/processed/
+outputs/
+.venv/

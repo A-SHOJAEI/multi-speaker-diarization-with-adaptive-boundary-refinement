@@ -1,0 +1,87 @@
+# Default configuration for multi-speaker diarization with adaptive boundary refinement
+
+# Data configuration
+data:
+  dataset_name: "ami"
+  sample_rate: 16000
+  segment_duration: 3.0  # seconds
+  hop_duration: 0.5  # seconds
+  batch_size: 16
+  num_workers: 4
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  synthetic_data_size: 1000  # For testing without full AMI corpus
+  n_fft: 512
+  hop_length: 160
+  n_mels: 80
+
+# Model configuration
+model:
+  embedding_dim: 512
+  num_speakers: 4  # Maximum number of speakers
+  dropout: 0.3
+  use_adaptive_refinement: true
+  refinement_window_size: 0.3  # seconds
+  refinement_iterations: 3
+  spectral_similarity_threshold: 0.7
+
+# Boundary refinement configuration
+boundary_refinement:
+  enabled: true
+  window_overlap: 0.5
+  gradient_threshold: 0.15
+  min_segment_duration: 0.2  # seconds
+  max_iterations: 5
+
+# Training configuration
+training:
+  num_epochs: 50
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  early_stopping_patience: 10
+  checkpoint_dir: "checkpoints"
+  best_model_path: "models/best_model.pt"
+  resume_from_checkpoint: null
+  mixed_precision: true
+
+# Learning rate scheduler
+scheduler:
+  type: "cosine"  # Options: cosine, step, plateau
+  warmup_epochs: 5
+  min_lr: 0.000001
+  # For step scheduler
+  step_size: 10
+  gamma: 0.1
+  # For plateau scheduler
+  patience: 5
+  factor: 0.5
+
+# Loss configuration
+loss:
+  diarization_weight: 1.0
+  boundary_consistency_weight: 0.5
+  temporal_consistency_weight: 0.3
+  speaker_confusion_penalty: 0.2
+
+# Evaluation configuration
+evaluation:
+  collar: 0.25  # Collar for boundary evaluation (seconds)
+  metrics:
+    - diarization_error_rate
+    - jaccard_error_rate
+    - boundary_f1_score
+    - speaker_confusion
+  save_predictions: true
+  results_dir: "results"
+
+# MLflow configuration
+mlflow:
+  enabled: true
+  experiment_name: "multi-speaker-diarization"
+  tracking_uri: "mlruns"
+  log_artifacts: true
+
+# Reproducibility
+random_seed: 42
