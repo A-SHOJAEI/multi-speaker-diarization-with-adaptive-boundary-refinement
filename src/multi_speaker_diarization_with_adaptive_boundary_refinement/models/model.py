@@ -182,8 +182,16 @@ class MultiSpeakerDiarizationModel(nn.Module):
             speaker_probs = F.softmax(output["speaker_logits"], dim=1)
             speaker_labels = torch.argmax(speaker_probs, dim=1)
 
-            # Get boundary points (threshold at 0.5)
-            boundary_points = (output["refined_boundaries"] > 0.5).long()
+            # Get boundary points using adaptive threshold based on distribution
+            # The refinement module may shift probabilities, so use a relative
+            # threshold: mean + 0.5 * std to detect outlier peaks as boundaries
+            refined = output["refined_boundaries"]
+            mean_val = refined.mean(dim=-1, keepdim=True)
+            std_val = refined.std(dim=-1, keepdim=True)
+            adaptive_threshold = mean_val + 0.5 * std_val
+            # Clamp the threshold so it stays in a reasonable range
+            adaptive_threshold = torch.clamp(adaptive_threshold, min=0.1, max=0.9)
+            boundary_points = (refined > adaptive_threshold).long()
 
         return speaker_labels, boundary_points
 

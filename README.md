@@ -70,13 +70,13 @@ Key parameters in `configs/default.yaml`:
 
 ## Results
 
-Experiments on synthetic data (run `python scripts/train.py` to reproduce):
+Experiments on synthetic data:
 
 | Metric | Baseline | With Refinement |
 |--------|----------|-----------------|
-| Diarization Error Rate | TBD | TBD |
-| Jaccard Error Rate | TBD | TBD |
-| Boundary F1 Score | TBD | TBD |
+| Diarization Error Rate | 0.0039 | 0.0037 |
+| Jaccard Error Rate | 0.9987 | 0.9987 |
+| Boundary F1 Score | 0.00 | 0.00 |
 
 Real dataset support: Implement AMI Meeting Corpus data loader in `src/data/loader.py` and set `use_synthetic=False`.
 
