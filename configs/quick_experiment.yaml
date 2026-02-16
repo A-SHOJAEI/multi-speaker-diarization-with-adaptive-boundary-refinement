@@ -2,14 +2,14 @@
 data:
   dataset_name: "ami"
   sample_rate: 16000
-  segment_duration: 3.0
+  segment_duration: 1.0
   hop_duration: 0.5
-  batch_size: 16
+  batch_size: 8
   num_workers: 0
   train_split: 0.7
   val_split: 0.15
   test_split: 0.15
-  synthetic_data_size: 300
+  synthetic_data_size: 50
   n_fft: 512
   hop_length: 160
   n_mels: 80
@@ -28,7 +28,7 @@ boundary_refinement:
   max_iterations: 3
 
 training:
-  num_epochs: 10
+  num_epochs: 5
   learning_rate: 0.001
   weight_decay: 0.0001
   gradient_clip_norm: 1.0

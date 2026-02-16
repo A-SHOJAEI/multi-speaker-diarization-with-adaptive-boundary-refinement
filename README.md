@@ -74,9 +74,9 @@ Experiments on synthetic data:
 
 | Metric | Baseline | With Refinement |
 |--------|----------|-----------------|
-| Diarization Error Rate | 0.0039 | 0.0037 |
-| Jaccard Error Rate | 0.9987 | 0.9987 |
-| Boundary F1 Score | 0.00 | 0.00 |
+| Diarization Error Rate | 0.0248 | 0.0260 |
+| Jaccard Error Rate | 0.9836 | 0.9837 |
+| Boundary F1 Score | 0.0856 | 0.0769 |
 
 Real dataset support: Implement AMI Meeting Corpus data loader in `src/data/loader.py` and set `use_synthetic=False`.
 
